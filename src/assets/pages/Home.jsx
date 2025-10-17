@@ -60,7 +60,6 @@ function Home() {
         }} />
         <input
           type="text"
-          placeholder="🔍 Buscar personaje por nombre..."
           value={busqueda}
           onChange={(e) => setBusqueda(e.target.value)}
           style={{
@@ -92,7 +91,7 @@ function Home() {
               transition: 'all 0.3s'
             }}
           >
-            {cat === 'all' ? '🌟 Todos' : cat === 'films' ? '🎬 Películas' : '📺 Series'}
+            {cat === 'all' ? ' Todos' : cat === 'films' ? ' Películas' : 'Series'}
           </button>
         ))}
         <span style={{ 
@@ -110,7 +109,6 @@ function Home() {
       {loading ? (
         <div style={{ textAlign: 'center', padding: '3rem', color: '#999' }}>
           <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>⏳</div>
-          <p>Cargando personajes mágicos...</p>
         </div>
       ) : (
         <div style={{
