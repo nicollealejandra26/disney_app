@@ -1,23 +1,39 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useState } from 'react';
+import Navbar from './assets/components/Navbar';
 import Home from './assets/pages/Home';
-import Detail from './assets/pages/Detail';
+import Favorites from './assets/pages/Favorites';
 import Original from './assets/pages/Original';
 import Info from './assets/pages/Info';
 import ExtraTabs from './assets/pages/ExtraTabs';
-import Navbar from './assets/components/Navbar';
+import { AppProvider } from './assets/context/AppContext';
 
 function App() {
+  const [currentPage, setCurrentPage] = useState('home');
+
+  const renderPage = () => {
+    switch(currentPage) {
+      case 'home':
+        return <Home />;
+      case 'favorites':
+        return <Favorites />;
+      case 'original':
+        return <Original />;
+      case 'extra':
+        return <ExtraTabs />;
+      case 'info':
+        return <Info />;
+      default:
+        return <Home />;
+    }
+  };
+
   return (
-    <Router>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/detail/:id" element={<Detail />} />
-        <Route path="/original" element={<Original />} />
-        <Route path="/info" element={<Info />} />
-        <Route path="/extra" element={<ExtraTabs />} />
-      </Routes>
-    </Router>
+    <AppProvider>
+      <div style={{ minHeight: '100vh', background: '#f5f5f5' }}>
+        <Navbar currentPage={currentPage} setCurrentPage={setCurrentPage} />
+        {renderPage()}
+      </div>
+    </AppProvider>
   );
 }
 

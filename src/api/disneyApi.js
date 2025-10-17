@@ -2,7 +2,7 @@ const BASE_URL = "https://api.disneyapi.dev/character";
 
 export const getAllCharacters = async () => {
   try {
-    const res = await fetch(BASE_URL);
+    const res = await fetch(`${BASE_URL}?pageSize=50`);
     if (!res.ok) throw new Error("Error al obtener personajes");
     const data = await res.json();
     return data.data;
