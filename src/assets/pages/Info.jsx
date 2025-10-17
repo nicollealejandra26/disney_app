@@ -1,68 +1,136 @@
-import { Info as InfoIcon } from "lucide-react";
+import React from "react";
 
 function Info() {
   return (
-    <div style={{ padding: '2rem', maxWidth: '900px', margin: '0 auto' }}>
-      <div style={{
-        background: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
-        borderRadius: '20px',
-        padding: '2rem',
-        color: 'white',
-        marginBottom: '2rem',
-        textAlign: 'center'
-      }}>
-        <InfoIcon size={48} style={{ marginBottom: '1rem' }} />
-        <h1 style={{ margin: 0, fontSize: '2.5rem' }}>Información</h1>
-        <p style={{ margin: '0.5rem 0 0 0', opacity: 0.9 }}>Acerca de esta aplicación</p>
-      </div>
+    <>
+      <style>{`
+        body {
+          margin: 0;
+          padding: 0;
+          font-family: 'Poppins', sans-serif;
+        }
 
-      <div style={{
-        background: 'white',
-        borderRadius: '16px',
-        padding: '2rem',
-        boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
-      }}>
-        <h2 style={{ color: '#667eea', marginTop: 0 }}>🎯 Características</h2>
-        <ul style={{ lineHeight: '2', color: '#555' }}>
-          <li>✅ <strong>5 Pestañas</strong>: Inicio, Favoritos, Original, Películas, Info</li>
-          <li>✅ <strong>Menú de Navegación</strong>: Fácil acceso a todas las secciones</li>
-          <li>✅ <strong>Lista de Personajes</strong>: Más de 50 personajes de Disney</li>
-          <li>✅ <strong>Buscador</strong>: Encuentra personajes por nombre</li>
-          <li>✅ <strong>Filtros</strong>: Por categoría (Todos, Películas, Series)</li>
-          <li>✅ <strong>Detalle Completo</strong>: Información detallada de cada personaje</li>
-          <li>✅ <strong>Sistema de Favoritos</strong>: Guarda tus personajes favoritos</li>
-          <li>✅ <strong>Contenido Original</strong>: Clásicos, Pixar y Marvel</li>
-        </ul>
+        .about-page {
+          min-height: 100vh;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+          color: white;
+          background: url('https://images6.alphacoders.com/124/1249214.jpg') no-repeat center center/cover;
+          position: relative;
+        }
 
-        <h2 style={{ color: '#667eea' }}>🛠 Tecnologías</h2>
-        <p style={{ color: '#555', lineHeight: '1.8' }}>
-          Esta aplicación fue desarrollada con <strong>React</strong> y utiliza la 
-          <strong> Disney API</strong> pública para obtener información de los personajes.
-        </p>
-        <p style={{ color: '#555', lineHeight: '1.8' }}>
-          Incluye diseño moderno con gradientes, sistema de estado compartido con Context API,
-          y navegación fluida entre páginas.
-        </p>
+        .overlay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba(0, 0, 0, 0.45);
+          backdrop-filter: blur(10px);
+          z-index: 1;
+        }
 
-        <h2 style={{ color: '#667eea' }}>👨‍💻 Desarrollo</h2>
-        <p style={{ color: '#555', lineHeight: '1.8' }}>
-          Proyecto desarrollado como práctica de React con integración de APIs REST.
-        </p>
+        .content {
+          position: relative;
+          z-index: 2;
+          padding: 2rem;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 1.5rem;
+        }
 
-        <div style={{
-          background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-          color: 'white',
-          padding: '1.5rem',
-          borderRadius: '12px',
-          marginTop: '2rem',
-          textAlign: 'center'
-        }}>
-          <p style={{ margin: 0, fontSize: '1.1rem', fontWeight: '500' }}>
-            🎓 Proyecto Final - API Individual
-          </p>
+        .main-title {
+          font-size: 2.5rem;
+          font-weight: 800;
+          letter-spacing: 2px;
+          margin: 0;
+          text-transform: uppercase;
+        }
+
+        .author {
+          font-size: 1rem;
+          opacity: 0.85;
+          margin: 0;
+        }
+
+        .logo {
+          max-width: 240px;
+          animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-10px); }
+        }
+
+        .description-box {
+          background: rgba(255, 255, 255, 0.15);
+          padding: 1rem 2rem;
+          border-radius: 12px;
+          backdrop-filter: blur(5px);
+          font-size: 1rem;
+          max-width: 320px;
+        }
+
+        .footer-info {
+          display: flex;
+          flex-direction: column;
+          gap: 0.3rem;
+          font-size: 0.85rem;
+          opacity: 0.9;
+        }
+
+        .footer-info a {
+          color: #4fc3f7;
+          text-decoration: none;
+        }
+
+        .footer-info a:hover {
+          text-decoration: underline;
+        }
+
+        @media (max-width: 480px) {
+          .main-title {
+            font-size: 2rem;
+          }
+          .logo {
+            max-width: 180px;
+          }
+          .description-box {
+            font-size: 0.9rem;
+          }
+        }
+      `}</style>
+
+      <div className="about-page">
+        <div className="overlay"></div>
+        <div className="content">
+          <h1 className="main-title">DISNEY API</h1>
+          <p className="author">Nicolle Alejandra Carvajal Guzman </p>
+
+          <img
+            className="logo"
+            src="https://cdn-icons-png.flaticon.com/512/8545/8545387.png"
+           
+          />
+
+          <div className="description-box">
+            Api con información de 9820 personajes de Disney
+          </div>
+
+          <div className="footer-info">
+            <a href="https://github.com/nicollealejandra26/disney_app" target="_blank" rel="noreferrer">
+              github.com/nicollealejandra26
+            </a>
+            <p>v 1.0.1</p>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
